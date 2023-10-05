@@ -5,15 +5,15 @@
         "delay-before-next": 5000,
         "elements": [
             {
-                "id": "tipo_ide",
+                "id": null,
                 "name": null,
                 "placeholder": null,
-                "xpath": null,
+                "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
                 "type": "select",
                 "actions": [
                     {
-                        "type": "select-option",
-                        "value": "<DOCUMENT_TYPE_IDX>",
+                        "type": "button",
+                        "value": null,
                         "delay-before-next": 10
                     }
                 ]
@@ -125,7 +125,7 @@
                 "actions": [
                     {
                         "type": "clic",
-                        "value": true,
+                        "value": null,
                         "delay-before-next": 10
                     }
                 ]
@@ -139,7 +139,7 @@
                 "actions": [
                     {
                         "type": "check-option",
-                        "value": true,
+                        "value": null,
                         "delay-before-next": 10
                     }
                 ]
@@ -153,7 +153,7 @@
                 "actions": [
                     {
                         "type": "clic",
-                        "value": true,
+                        "value": null,
                         "delay-before-next": 10
                     }
                 ]

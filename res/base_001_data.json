@@ -1,0 +1,13 @@
+{
+    "DOCUMENT_TYPE": "CC",
+    "DOCUMENT_NUMBER": "1234567890",
+    "NAMES": "Pedro Andres",
+    "LAST_NAMES": "Perez Vargas",
+    "EMAIL": "mymai@mail.com",
+    "CELL_PHONE": "3001234567",
+    "PASSPORT_TYPE": "Ordinario",
+    "REQUEST_TYPE": "Pasaporte por primera vez",
+    "PAYMENT_YEAR": "2023",
+    "PAYMENT_MONTH": "Sep",
+    "PAYMENT_DAY": "27"
+}

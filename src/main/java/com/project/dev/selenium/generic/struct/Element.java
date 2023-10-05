@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Page} se encarga de realizar tareas especificas.
+ * @fileoverview    {Element} se encarga de realizar tareas especificas.
  *
  * @version         2.0
  *
@@ -12,7 +12,7 @@
  * @version 1.0     Implementación realizada.
  * @version 2.0     Documentación agregada.
  */
-package com.project.dev.struct;
+package com.project.dev.selenium.generic.struct;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * TODO: Definición de {@code Page}.
+ * TODO: Definición de {@code Element}.
  *
  * @author Dyson Parra
  * @since 1.8
@@ -30,11 +30,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @NoArgsConstructor
-public class Page {
+public class Element {
 
-    private int id;
-    private String url;
-    private long delay;
-    private List<Element> elements;
+    private String id;
+    private String name;
+    private String placeholder;
+    private String xpath;
+    private String type;
+    private List<Action> actions;
 
 }

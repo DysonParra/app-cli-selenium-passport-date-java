@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Action} se encarga de realizar tareas especificas.
+ * @fileoverview    {Page} se encarga de realizar tareas especificas.
  *
  * @version         2.0
  *
@@ -12,30 +12,29 @@
  * @version 1.0     Implementación realizada.
  * @version 2.0     Documentación agregada.
  */
-package com.project.dev.struct;
+package com.project.dev.selenium.generic.struct;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
- * TODO: Definición de {@code Action}.
+ * TODO: Definición de {@code Page}.
  *
  * @author Dyson Parra
  * @since 1.8
  */
 @AllArgsConstructor
+@Builder
 @Data
 @NoArgsConstructor
-public abstract class Action {
+public class Page {
 
-    protected String type;
-    protected Object value;
-    protected long delay;
-
-    public abstract boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element) throws Exception;
+    private int id;
+    private String url;
+    private long delay;
+    private List<Element> elements;
 
 }

@@ -18,9 +18,9 @@ import com.google.common.collect.ImmutableMap;
 import com.project.dev.file.generic.FileProcessor;
 import com.project.dev.flag.processor.Flag;
 import com.project.dev.flag.processor.FlagMap;
-import com.project.dev.struct.Action;
-import com.project.dev.struct.Element;
-import com.project.dev.struct.Page;
+import com.project.dev.selenium.generic.struct.Action;
+import com.project.dev.selenium.generic.struct.Element;
+import com.project.dev.selenium.generic.struct.Page;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -29,6 +29,7 @@ import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import lombok.NonNull;
@@ -54,6 +55,23 @@ public class ActionProcessor {
     private static int currentIndex = 0;
     private static String outputPath;
     private static String outputFile;
+
+    /**
+     * TODO: Definición de {@code replaceData}.
+     *
+     * @param data
+     * @param field
+     * @return
+     */
+    public static String replaceData(@NonNull JSONObject data, String field) {
+        if (field != null) {
+            for (Iterator iterator = data.keySet().iterator(); iterator.hasNext();) {
+                String key = (String) iterator.next();
+                field = field.replaceAll("<" + key + ">", (String) data.get(key));
+            }
+        }
+        return field;
+    }
 
     /**
      * TODO: Definición de {@code runPageActions}.
@@ -123,10 +141,11 @@ public class ActionProcessor {
     public static boolean processFlags(Flag[] flags) {
         boolean result = true;
 
-        String actionsPackage = "com.project.dev.struct.action.";
+        String actionsPackage = "com.project.dev.selenium.generic.struct.action.";
         Map<String, String> flagsMap = FlagMap.convertFlagsArrayToMap(flags);
         String chromeDriverPath = flagsMap.get("-chromeDriverPath");
-        String configFilePath = flagsMap.get("-configFilePath");
+        String navigationFilePath = flagsMap.get("-navigationFilePath");
+        String dataFilePath = flagsMap.get("-dataFilePath");
         outputPath = flagsMap.get("-outputPath");
         outputFile = flagsMap.get("-outputFile");
         String chromeUserDataDir = System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data";
@@ -148,8 +167,11 @@ public class ActionProcessor {
         if (!FileProcessor.validateFile(chromeDriverPath)) {
             System.out.println("Invalid file in flag '-chromeDriverPath'");
             result = false;
-        } else if (!FileProcessor.validateFile(configFilePath)) {
-            System.out.println("Invalid file in flag '-configFilePath'");
+        } else if (!FileProcessor.validateFile(navigationFilePath)) {
+            System.out.println("Invalid file in flag '-navigationFilePath'");
+            result = false;
+        } else if (!FileProcessor.validateFile(dataFilePath)) {
+            System.out.println("Invalid file in flag '-dataFilePath'");
             result = false;
         } else if (!FileProcessor.validatePath(outputPath)) {
             System.out.println("Invalid path in flag '-outputPath'");
@@ -158,25 +180,35 @@ public class ActionProcessor {
             System.out.println("Invalid path in flag '-chromeUserDataDir'");
             result = false;
         } else {
-            System.out.println("Parsing config file...");
+            System.out.println("Reading config files...");
             //System.out.println("");
 
-            JSONArray config = null;
+            JSONArray navigation = null;
+            JSONObject data = null;
+            JSONParser parser = new JSONParser();
             try {
-                JSONParser parser = new JSONParser();
-                config = (JSONArray) parser.parse(new FileReader(configFilePath));
+                navigation = (JSONArray) parser.parse(new FileReader(navigationFilePath));
+                System.out.println("File: '" + navigationFilePath + "' success readed.");
             } catch (Exception e) {
                 //e.printStackTrace();
-                System.out.println("Error parsing the file: '" + configFilePath + "'");
+                System.out.println("Error reading the file: '" + navigationFilePath + "'");
+                result = false;
+            }
+            try {
+                data = (JSONObject) parser.parse(new FileReader(dataFilePath));
+                System.out.println("File: '" + dataFilePath + "' success readed.");
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.println("Error reading the file: '" + dataFilePath + "'");
                 result = false;
             }
 
             List<Page> pages = new ArrayList<>();
             List<String> urlPages = new ArrayList<>();
 
-            if (result && config != null) {
+            if (result && navigation != null && data != null) {
                 int index = 0;
-                for (Object currentPage : config) {
+                for (Object currentPage : navigation) {
                     Page page = null;
                     List<Element> elementsArray = new ArrayList<>();
                     JSONArray elements = null;
@@ -203,17 +235,17 @@ public class ActionProcessor {
                             try {
                                 JSONObject jsonCurrentElement = (JSONObject) currentElement;
                                 Element element = Element.builder()
-                                        .id((String) jsonCurrentElement.get("id"))
-                                        .name((String) jsonCurrentElement.get("name"))
-                                        .placeholder((String) jsonCurrentElement.get("placeholder"))
-                                        .xpath((String) jsonCurrentElement.get("xpath"))
-                                        .type((String) jsonCurrentElement.get("type"))
+                                        .id(replaceData(data, (String) jsonCurrentElement.get("id")))
+                                        .name(replaceData(data, (String) jsonCurrentElement.get("name")))
+                                        .placeholder(replaceData(data, (String) jsonCurrentElement.get("placeholder")))
+                                        .xpath(replaceData(data, (String) jsonCurrentElement.get("xpath")))
+                                        .type(replaceData(data, (String) jsonCurrentElement.get("type")))
                                         .build();
                                 List<Action> actions = new ArrayList<>();
                                 for (Object currentAction : (JSONArray) jsonCurrentElement.get("actions")) {
                                     JSONObject jsonCurrentAction = (JSONObject) currentAction;
-                                    String type = (String) jsonCurrentAction.get("type");
-                                    Object value = jsonCurrentAction.get("value");
+                                    String type = replaceData(data, (String) jsonCurrentAction.get("type"));
+                                    Object value = replaceData(data, (String) jsonCurrentAction.get("value"));
                                     long delay_element = (long) jsonCurrentAction.get("delay-before-next");
 
                                     String className = actionsPackage;
@@ -225,7 +257,7 @@ public class ActionProcessor {
 
                                     Action action = (Action) cons.newInstance();
                                     action.setType(type);
-                                    action.setValue(value);
+                                    action.setValue((String) value);
                                     action.setDelay(delay_element);
                                     actions.add(action);
                                 }

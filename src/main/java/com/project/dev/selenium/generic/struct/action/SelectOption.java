@@ -12,9 +12,9 @@
  * @version 1.0     Implementación realizada.
  * @version 2.0     Documentación agregada.
  */
-package com.project.dev.struct.action;
+package com.project.dev.selenium.generic.struct.action;
 
-import com.project.dev.struct.Action;
+import com.project.dev.selenium.generic.struct.Action;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
