@@ -133,7 +133,7 @@
                 "id": null,
                 "name": null,
                 "placeholder": null,
-                "xpath": "//div[@class='radio']//label//input",
+                "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
                 "type": "button",
                 "actions": [
                     {

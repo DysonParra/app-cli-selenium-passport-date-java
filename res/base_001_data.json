@@ -9,5 +9,6 @@
     "REQUEST_TYPE": "Pasaporte por primera vez",
     "PAYMENT_YEAR": "2023",
     "PAYMENT_MONTH": "Sep",
-    "PAYMENT_DAY": "27"
+    "PAYMENT_DAY": "27",
+    "DATE_HOUR": "09:20:00"
 }
