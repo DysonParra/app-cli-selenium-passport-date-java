@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Page} se encarga de realizar tareas especificas.
+ * @fileoverview    {Config} se encarga de realizar tareas especificas.
  *
  * @version         2.0
  *
@@ -14,12 +14,10 @@
  */
 package com.project.dev.selenium.generic.struct;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * TODO: Definición de {@code Page}.
@@ -31,12 +29,19 @@ import lombok.ToString;
 @Builder
 @Data
 @NoArgsConstructor
-public class Page {
+public class Config {
 
-    private int id;
-    private String url;
-    private long delay;
-    @ToString.Exclude
-    private List<Element> elements;
+    private String name;
+    private Class type;
+    private Object value;
+    private Object defaultValue;
 
+    /**
+     * Get {@code value} if is not {@code null}, or {@code defaultValue} if it is.
+     *
+     * @return {@code value} or {@code defaultValue}
+     */
+    public Object getCanonicalValue() {
+        return value != null ? value : defaultValue;
+    }
 }

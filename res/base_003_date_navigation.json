@@ -1,176 +1,186 @@
-[
-    {
-        "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/cita/datos-usuario/",
-        "delay-before-next": 5000,
-        "elements": [
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//input[@type='number']",
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<DOCUMENT_NUMBER>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//option[normalize-space(text()) ='<REQUEST_TYPE>']",
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//input[@type='text'][@required='required']",
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//select[@data-handler='selectYear']//option[@value='<PAYMENT_YEAR>']",
-                "type": "select",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//select[@data-handler='selectMonth']//option[text()='<PAYMENT_MONTH>']",
-                "type": "select",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//a[@href='#'][text()='<PAYMENT_DAY>']",
-                "type": "a",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "acepto",
-                "name": "data[acepto]",
-                "placeholder": null,
-                "xpath": null,
-                "type": "checkbox",
-                "actions": [
-                    {
-                        "type": "check-option",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "consult",
-                "name": "next",
-                "placeholder": null,
-                "xpath": null,
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 2000
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//td[@data-handler='selectDay']//a",
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 2000
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 100
-                    }
-                ]
-            },
-            {
-                "id": "new_cita",
-                "name": "next",
-                "placeholder": null,
-                "xpath": null,
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 500
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//input[@type='submit'][@value='Finalizar']",
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 500
-                    }
-                ]
-            }
-        ]
-    }
-]
+{
+    "config": {
+        "start-date" : "07:59:30",
+        "load-page-timeout": 50000,
+        "max-load-page-tries": 30,
+        "max-action-page-tries": 36000,
+        "delay-time-before-retry": 2000,
+        "delay-time-before-end" : 36000000
+    },
+    "pages": [
+        {
+            "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/cita/datos-usuario/",
+            "delay-before-next": 5000,
+            "elements": [
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//input[@type='number']",
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<DOCUMENT_NUMBER>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//option[normalize-space(text()) ='<REQUEST_TYPE>']",
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//input[@type='text'][@required='required']",
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//select[@data-handler='selectYear']//option[@value='<PAYMENT_YEAR>']",
+                    "type": "select",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//select[@data-handler='selectMonth']//option[text()='<PAYMENT_MONTH>']",
+                    "type": "select",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//a[@href='#'][text()='<PAYMENT_DAY>']",
+                    "type": "a",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "acepto",
+                    "name": "data[acepto]",
+                    "placeholder": null,
+                    "xpath": null,
+                    "type": "checkbox",
+                    "actions": [
+                        {
+                            "type": "check-option",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "consult",
+                    "name": "next",
+                    "placeholder": null,
+                    "xpath": null,
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 2000
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//td[@data-handler='selectDay']//a",
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 2000
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "new_cita",
+                    "name": "next",
+                    "placeholder": null,
+                    "xpath": null,
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 500
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//input[@type='submit'][@value='Finalizar']",
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 500
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

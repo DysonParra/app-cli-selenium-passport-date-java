@@ -43,11 +43,6 @@ public class PassportProcessor {
 
         String optionalFlags[][] = {
             {"-chromeProfileDir"},
-            {"-maxLoadPageTries"},
-            {"-maxActionPageTries"},
-            {"-delayTimeBeforeRetry"},
-            {"-delayTimeBeforeEnd"},
-            {"-loadPageTimeOut"},
             {"--notUseIncognito"},
             {"-chromeUserDataDir"},};
 
@@ -64,14 +59,6 @@ public class PassportProcessor {
             "output.log",
             "-chromeProfileDir",
             "Profile 1",
-            "-maxLoadPageTries",
-            "3",
-            "-maxActionPageTries",
-            "36000",
-            "-loadPageTimeOut",
-            "50000",
-            "-delayTimeBeforeEnd",
-            "36000000",
             "--notUseIncognito",};
 
         // for (String arg : args)

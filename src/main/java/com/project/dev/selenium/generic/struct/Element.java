@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * TODO: Definición de {@code Element}.
@@ -37,6 +38,7 @@ public class Element {
     private String placeholder;
     private String xpath;
     private String type;
+    @ToString.Exclude
     private List<Action> actions;
 
 }

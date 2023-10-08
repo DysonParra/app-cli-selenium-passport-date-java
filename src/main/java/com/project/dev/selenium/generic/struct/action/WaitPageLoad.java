@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {SetText} se encarga de realizar tareas especificas.
+ * @fileoverview    {Clic} se encarga de realizar tareas especificas.
  *
  * @version         2.0
  *
@@ -15,15 +15,18 @@
 package com.project.dev.selenium.generic.struct.action;
 
 import com.project.dev.selenium.generic.struct.Action;
+import java.time.Duration;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * TODO: Definición de {@code SetText}.
+ * TODO: Definición de {@code Clic}.
  *
  * @author Dyson Parra
  * @since 1.8
@@ -31,12 +34,16 @@ import org.openqa.selenium.WebElement;
 @AllArgsConstructor
 @Builder
 @Data
-public class SetText extends Action {
+public class WaitPageLoad extends Action {
 
     @Override
     public boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element) throws Exception {
-        //System.out.println("SetText");
-        element.sendKeys(value);
+        //System.out.println("WaitPageLoad");
+        new WebDriverWait(driver, Duration.ofMillis(Integer.parseInt(value)))
+                                    .until((WebDriver webDriver) -> ((JavascriptExecutor) webDriver)
+                                    .executeScript("return document.readyState")
+                                    .equals("complete"));
+        System.out.println("YESSS");
         return true;
     }
 

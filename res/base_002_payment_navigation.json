@@ -1,163 +1,173 @@
-[
-    {
-        "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/user/pago/",
-        "url_test": "file:///D:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
-        "delay-before-next": 5000,
-        "elements": [
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
-                "type": "select",
-                "actions": [
-                    {
-                        "type": "button",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "num_ide",
-                "name": "data[num_ide]",
-                "placeholder": "1.234.567.890",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<DOCUMENT_NUMBER>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "num_ide_confirm",
-                "name": "data[num_ide_confirm]",
-                "placeholder": "1.234.567.890",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<DOCUMENT_NUMBER>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "nombre",
-                "name": "data[nombre]",
-                "placeholder": "Pedro Andres",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<NAMES>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "apellido",
-                "name": "data[apellido]",
-                "placeholder": "Perez Vargas",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<LAST_NAMES>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "email",
-                "name": "data[email]",
-                "placeholder": "ingrese su correo electrónico",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<EMAIL>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "email_confirm",
-                "name": "data[email_confirm]",
-                "placeholder": "ingrese su correo electrónico",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<EMAIL>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": "ingrese su n\u00FAmero celular",
-                "xpath": null,
-                "type": "input",
-                "actions": [
-                    {
-                        "type": "set-text",
-                        "value": "<CELL_PHONE>",
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": null,
-                "name": null,
-                "placeholder": null,
-                "xpath": "//option[normalize-space(text()) ='Pasaporte <PASSPORT_TYPE> ($155.000)']",
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "acepto",
-                "name": "data[acepto]",
-                "placeholder": null,
-                "xpath": null,
-                "type": "checkbox",
-                "actions": [
-                    {
-                        "type": "check-option",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            },
-            {
-                "id": "form-pago",
-                "name": "submit",
-                "placeholder": null,
-                "xpath": null,
-                "type": "button",
-                "actions": [
-                    {
-                        "type": "clic",
-                        "value": null,
-                        "delay-before-next": 10
-                    }
-                ]
-            }
-        ]
-    }
-]
+{
+    "config": {
+        "start-date" : "07:59:30",
+        "load-page-timeout": 50000,
+        "max-load-page-tries": 30,
+        "max-action-page-tries": 36000,
+        "delay-time-before-retry": 2000,
+        "delay-time-before-end" : 36000000
+    },
+    "pages": [
+        {
+            "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/user/pago/",
+            "url_test": "file:///D:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
+            "delay-before-next": 5000,
+            "elements": [
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
+                    "type": "select",
+                    "actions": [
+                        {
+                            "type": "button",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "num_ide",
+                    "name": "data[num_ide]",
+                    "placeholder": "1.234.567.890",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<DOCUMENT_NUMBER>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "num_ide_confirm",
+                    "name": "data[num_ide_confirm]",
+                    "placeholder": "1.234.567.890",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<DOCUMENT_NUMBER>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "nombre",
+                    "name": "data[nombre]",
+                    "placeholder": "Pedro Andres",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<NAMES>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "apellido",
+                    "name": "data[apellido]",
+                    "placeholder": "Perez Vargas",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<LAST_NAMES>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "email",
+                    "name": "data[email]",
+                    "placeholder": "ingrese su correo electrónico",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<EMAIL>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "email_confirm",
+                    "name": "data[email_confirm]",
+                    "placeholder": "ingrese su correo electrónico",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<EMAIL>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": "ingrese su n\u00FAmero celular",
+                    "xpath": null,
+                    "type": "input",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "value": "<CELL_PHONE>",
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//option[normalize-space(text()) ='Pasaporte <PASSPORT_TYPE> ($155.000)']",
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "acepto",
+                    "name": "data[acepto]",
+                    "placeholder": null,
+                    "xpath": null,
+                    "type": "checkbox",
+                    "actions": [
+                        {
+                            "type": "check-option",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                },
+                {
+                    "id": "form-pago",
+                    "name": "submit",
+                    "placeholder": null,
+                    "xpath": null,
+                    "type": "button",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "value": null,
+                            "delay-before-next": 10
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

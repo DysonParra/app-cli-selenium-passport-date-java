@@ -19,6 +19,7 @@ import com.project.dev.file.generic.FileProcessor;
 import com.project.dev.flag.processor.Flag;
 import com.project.dev.flag.processor.FlagMap;
 import com.project.dev.selenium.generic.struct.Action;
+import com.project.dev.selenium.generic.struct.Config;
 import com.project.dev.selenium.generic.struct.Element;
 import com.project.dev.selenium.generic.struct.Page;
 import java.io.BufferedWriter;
@@ -27,8 +28,11 @@ import java.io.FileReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,22 +59,50 @@ public class ActionProcessor {
     private static int currentIndex = 0;
     private static String outputPath;
     private static String outputFile;
+    private static final SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
     /**
      * TODO: Definición de {@code replaceData}.
      *
-     * @param data
+     * @param jsonData
      * @param field
      * @return
      */
-    public static String replaceData(@NonNull JSONObject data, String field) {
+    public static String replaceData(@NonNull JSONObject jsonData, String field) {
         if (field != null) {
-            for (Iterator iterator = data.keySet().iterator(); iterator.hasNext();) {
+            for (Iterator iterator = jsonData.keySet().iterator(); iterator.hasNext();) {
                 String key = (String) iterator.next();
-                field = field.replaceAll("<" + key + ">", (String) data.get(key));
+                field = field.replaceAll("<" + key + ">", (String) jsonData.get(key));
             }
         }
         return field;
+    }
+
+    /**
+     * TODO: Definición de {@code setConfigValues}.
+     *
+     * @param jsonConfig
+     * @param configMap
+     */
+    public static void setConfigValues(JSONObject jsonConfig, @NonNull Map<String, Config> configMap) {
+        if (jsonConfig != null) {
+            String key;
+            for (Iterator iterator = jsonConfig.keySet().iterator(); iterator.hasNext();) {
+                key = (String) iterator.next();
+                Config conf = configMap.get(key);
+                try {
+                    if (conf != null)
+                        conf.setValue(conf.getType().cast(jsonConfig.get(key)));
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                    System.out.println("Error setting config value to '" + key + "', using default.");
+                }
+            }
+        }
+        for (Map.Entry<String, Config> entry : configMap.entrySet())
+            entry.getValue().setName(entry.getKey());
     }
 
     /**
@@ -84,11 +116,11 @@ public class ActionProcessor {
         Page page = pages.get(currentIndex++);
         System.out.println(page);
         for (Element element : page.getElements()) {
-            //System.out.println(element);
+            WebElement webElm = null;
+            System.out.println(element);
             for (Action action : element.getActions()) {
-                System.out.println(action);
+                System.out.println("    " + action);
                 try {
-                    WebElement webElm;
                     if (element.getId() != null)
                         webElm = driver.findElement(By.id(element.getId()));
                     else if (element.getName() != null)
@@ -101,7 +133,9 @@ public class ActionProcessor {
                     action.executeAction(driver, webElm);
                 } catch (Exception e) {
                     System.out.println("Error executing action in element: " + element);
-                    e.printStackTrace();
+                    System.out.println("Date:    " + DATETIME_FORMAT.format(new Date()));
+                    System.out.println("Element: " + webElm);
+                    System.out.println("Message: " + e.getMessage().split("\n")[0]);
                     System.out.println("");
                     return false;
                 }
@@ -150,19 +184,15 @@ public class ActionProcessor {
         outputFile = flagsMap.get("-outputFile");
         String chromeUserDataDir = System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data";
         String chromeProfileDir = flagsMap.get("-chromeProfileDir");
-
-        int maxLoadPageTries = 3;
-        int maxActionPageTries = 10;
-        int delayTimeBeforeRetry = 2000;
-        int loadPageTimeOut = 10000;
-        int delayTimeBeforeEnd = 10000;
-
         chromeUserDataDir = FlagMap.validateFlagInMap(flagsMap, "-chromeUserDataDir", chromeUserDataDir, String.class);
-        maxLoadPageTries = FlagMap.validateFlagInMap(flagsMap, "-maxLoadPageTries", maxLoadPageTries, Integer.class);
-        maxActionPageTries = FlagMap.validateFlagInMap(flagsMap, "-maxActionPageTries", maxActionPageTries, Integer.class);
-        delayTimeBeforeRetry = FlagMap.validateFlagInMap(flagsMap, "-delayTimeBeforeRetry", delayTimeBeforeRetry, Integer.class);
-        loadPageTimeOut = FlagMap.validateFlagInMap(flagsMap, "-loadPageTimeOut", loadPageTimeOut, Integer.class);
-        delayTimeBeforeEnd = FlagMap.validateFlagInMap(flagsMap, "-delayTimeBeforeEnd", delayTimeBeforeEnd, Integer.class);
+
+        Map<String, Config> configMap = new HashMap<>();
+        configMap.put("start-date", Config.builder().type(String.class).defaultValue(null).build());
+        configMap.put("load-page-timeout", Config.builder().type(Long.class).defaultValue(10000l).build());
+        configMap.put("max-load-page-tries", Config.builder().type(Long.class).defaultValue(3l).build());
+        configMap.put("max-action-page-tries", Config.builder().type(Long.class).defaultValue(5l).build());
+        configMap.put("delay-time-before-retry", Config.builder().type(Long.class).defaultValue(2000l).build());
+        configMap.put("delay-time-before-end", Config.builder().type(Long.class).defaultValue(1000l).build());
 
         if (!FileProcessor.validateFile(chromeDriverPath)) {
             System.out.println("Invalid file in flag '-chromeDriverPath'");
@@ -183,19 +213,31 @@ public class ActionProcessor {
             System.out.println("Reading config files...");
             //System.out.println("");
 
-            JSONArray navigation = null;
-            JSONObject data = null;
+            JSONObject jsonNavigation;
+            JSONObject jsonConfig = null;
+            JSONArray jsonPages = null;
+            JSONObject jsonData = null;
             JSONParser parser = new JSONParser();
             try {
-                navigation = (JSONArray) parser.parse(new FileReader(navigationFilePath));
+                jsonNavigation = (JSONObject) parser.parse(new FileReader(navigationFilePath));
                 System.out.println("File: '" + navigationFilePath + "' success readed.");
+                try {
+                    jsonConfig = (JSONObject) jsonNavigation.get("config");
+                    System.out.println("Config loaded");
+                    jsonPages = (JSONArray) jsonNavigation.get("pages");
+                    System.out.println("Pages loaded");
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                    System.out.println("Error getting 'config' or 'pages'");
+                    result = false;
+                }
             } catch (Exception e) {
                 //e.printStackTrace();
                 System.out.println("Error reading the file: '" + navigationFilePath + "'");
                 result = false;
             }
             try {
-                data = (JSONObject) parser.parse(new FileReader(dataFilePath));
+                jsonData = (JSONObject) parser.parse(new FileReader(dataFilePath));
                 System.out.println("File: '" + dataFilePath + "' success readed.");
             } catch (Exception e) {
                 //e.printStackTrace();
@@ -203,12 +245,22 @@ public class ActionProcessor {
                 result = false;
             }
 
+            setConfigValues(jsonConfig, configMap);
+            System.out.println("Config:");
+            System.out.println(configMap + "\n");
+            String startDate = (String) configMap.get("start-date").getCanonicalValue();
+            int loadPageTimeOut = (int) (long) configMap.get("load-page-timeout").getCanonicalValue();
+            int maxLoadPageTries = (int) (long) configMap.get("max-load-page-tries").getCanonicalValue();
+            int maxActionPageTries = (int) (long) configMap.get("max-action-page-tries").getCanonicalValue();
+            int delayTimeBeforeRetry = (int) (long) configMap.get("delay-time-before-retry").getCanonicalValue();
+            int delayTimeBeforeEnd = (int) (long) configMap.get("delay-time-before-end").getCanonicalValue();
+
             List<Page> pages = new ArrayList<>();
             List<String> urlPages = new ArrayList<>();
 
-            if (result && navigation != null && data != null) {
+            if (result && jsonPages != null && jsonData != null) {
                 int index = 0;
-                for (Object currentPage : navigation) {
+                for (Object currentPage : jsonPages) {
                     Page page = null;
                     List<Element> elementsArray = new ArrayList<>();
                     JSONArray elements = null;
@@ -235,17 +287,17 @@ public class ActionProcessor {
                             try {
                                 JSONObject jsonCurrentElement = (JSONObject) currentElement;
                                 Element element = Element.builder()
-                                        .id(replaceData(data, (String) jsonCurrentElement.get("id")))
-                                        .name(replaceData(data, (String) jsonCurrentElement.get("name")))
-                                        .placeholder(replaceData(data, (String) jsonCurrentElement.get("placeholder")))
-                                        .xpath(replaceData(data, (String) jsonCurrentElement.get("xpath")))
-                                        .type(replaceData(data, (String) jsonCurrentElement.get("type")))
+                                        .id(replaceData(jsonData, (String) jsonCurrentElement.get("id")))
+                                        .name(replaceData(jsonData, (String) jsonCurrentElement.get("name")))
+                                        .placeholder(replaceData(jsonData, (String) jsonCurrentElement.get("placeholder")))
+                                        .xpath(replaceData(jsonData, (String) jsonCurrentElement.get("xpath")))
+                                        .type(replaceData(jsonData, (String) jsonCurrentElement.get("type")))
                                         .build();
                                 List<Action> actions = new ArrayList<>();
                                 for (Object currentAction : (JSONArray) jsonCurrentElement.get("actions")) {
                                     JSONObject jsonCurrentAction = (JSONObject) currentAction;
-                                    String type = replaceData(data, (String) jsonCurrentAction.get("type"));
-                                    Object value = replaceData(data, (String) jsonCurrentAction.get("value"));
+                                    String type = replaceData(jsonData, (String) jsonCurrentAction.get("type"));
+                                    Object value = replaceData(jsonData, (String) jsonCurrentAction.get("value"));
                                     long delay_element = (long) jsonCurrentAction.get("delay-before-next");
 
                                     String className = actionsPackage;
@@ -288,6 +340,41 @@ public class ActionProcessor {
                 for (Page page : pages)
                     System.out.println(page);
                 System.out.println("");
+
+                System.out.println("start-date: " + startDate);
+                Date execDate = null;
+                Date currentDate = new Date();
+                if (startDate != null) {
+                    try {
+                        execDate = DATETIME_FORMAT.parse(startDate);
+                        System.out.println("Parsed using '" + DATETIME_FORMAT.toLocalizedPattern() + "'");
+                    } catch (Exception e1) {
+                        System.out.println("Could not parse date using '" + DATETIME_FORMAT.toLocalizedPattern() + "'");
+                        try {
+                            execDate = DATETIME_FORMAT.parse(DATE_FORMAT.format(currentDate) + " " + startDate);
+                            System.out.println("Parsed using '" + TIME_FORMAT.toLocalizedPattern() + "'");
+                            if (execDate.before(currentDate)) {
+                                execDate.setTime(execDate.getTime() + 86400000);
+                            }
+                        } catch (Exception e2) {
+                            System.out.println("Could not parse date using '" + TIME_FORMAT.toLocalizedPattern() + "'");
+                        }
+                    }
+                }
+
+                if (execDate != null) {
+                    currentDate = new Date();
+                    System.out.println("current-date: " + DATETIME_FORMAT.format(currentDate));
+                    System.out.println("start-date:   " + DATETIME_FORMAT.format(execDate));
+                    long milliseconds = execDate.getTime() - currentDate.getTime();
+                    System.out.println("Waiting " + milliseconds / 1000 + " seconds...\n");
+                    try {
+                        Thread.sleep(milliseconds);
+                    } catch (InterruptedException e) {
+                        System.out.println("Error waiting " + milliseconds / 1000 + " seconds\n");
+                    }
+                } else
+                    System.out.println("Start time invalid or not specified\n");
 
                 //for (Page page : pages)
                 //    runPageActions(null, pages);
