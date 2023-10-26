@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Clic} se encarga de realizar tareas especificas.
+ * @fileoverview    {WaitPageLoad} se encarga de realizar tareas especificas.
  *
  * @version         2.0
  *
@@ -26,7 +26,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * TODO: Definición de {@code Clic}.
+ * TODO: Definición de {@code WaitPageLoad}.
  *
  * @author Dyson Parra
  * @since 1.8
@@ -43,13 +43,13 @@ public class WaitPageLoad extends Action {
                                     .until((WebDriver webDriver) -> ((JavascriptExecutor) webDriver)
                                     .executeScript("return document.readyState")
                                     .equals("complete"));
-        System.out.println("YESSS");
+        //System.out.println("Page loaded.");
         return true;
     }
 
     @Override
     public String toString() {
-        return "Action{" + "type=" + type + ", value=" + value + ", delay=" + delay + '}';
+        return "Action{" + "type=" + type + ", value=" + value + ", delay=" + delay + ", properties=" + properties + '}';
     }
 
 }

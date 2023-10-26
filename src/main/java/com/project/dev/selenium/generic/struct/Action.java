@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -35,6 +36,7 @@ public abstract class Action {
     protected String type;
     protected String value;
     protected long delay;
+    protected JSONObject properties;
 
     public abstract boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element) throws Exception;
 

@@ -44,7 +44,7 @@ public class SelectOption extends Action {
 
     @Override
     public String toString() {
-        return "Action{" + "type=" + type + ", value=" + value + ", delay=" + delay + '}';
+        return "Action{" + "type=" + type + ", value=" + value + ", delay=" + delay + ", properties=" + properties + '}';
     }
 
 }

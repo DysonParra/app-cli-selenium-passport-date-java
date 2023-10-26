@@ -58,7 +58,6 @@ public class ActionProcessor {
 
     private static int currentIndex = 0;
     private static String outputPath;
-    private static String outputFile;
     private static final SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
@@ -152,17 +151,6 @@ public class ActionProcessor {
         } catch (InterruptedException e) {
             System.out.println("Error executing sleep");
         }
-
-        System.out.println("Current page:" + driver.getCurrentUrl());
-        System.out.println("");
-        try (FileOutputStream fos = new FileOutputStream(outputPath + "\\" + outputFile, true);
-                OutputStreamWriter osr = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
-                BufferedWriter writer = new BufferedWriter(osr);) {
-            writer.write(driver.getCurrentUrl() + "\n");
-
-        } catch (Exception e) {
-            System.out.println("Something went wrong");
-        }
         return true;
     }
 
@@ -181,7 +169,6 @@ public class ActionProcessor {
         String navigationFilePath = flagsMap.get("-navigationFilePath");
         String dataFilePath = flagsMap.get("-dataFilePath");
         outputPath = flagsMap.get("-outputPath");
-        outputFile = flagsMap.get("-outputFile");
         String chromeUserDataDir = System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data";
         String chromeProfileDir = flagsMap.get("-chromeProfileDir");
         chromeUserDataDir = FlagMap.validateFlagInMap(flagsMap, "-chromeUserDataDir", chromeUserDataDir, String.class);
@@ -280,7 +267,7 @@ public class ActionProcessor {
                         result = false;
                     }
                     if (result && page != null && elements != null) {
-                        System.out.println("Page:  " + page.getUrl());
+                        //System.out.println("Page:  " + page.getUrl());
                         //System.out.println("Delay: " + page.getDelay());
                         //System.out.println("Elements:");
                         for (Object currentElement : elements) {
@@ -297,9 +284,16 @@ public class ActionProcessor {
                                 for (Object currentAction : (JSONArray) jsonCurrentElement.get("actions")) {
                                     JSONObject jsonCurrentAction = (JSONObject) currentAction;
                                     String type = replaceData(jsonData, (String) jsonCurrentAction.get("type"));
-                                    Object value = replaceData(jsonData, (String) jsonCurrentAction.get("value"));
+                                    String value = replaceData(jsonData, (String) jsonCurrentAction.get("value"));
                                     long delay_element = (long) jsonCurrentAction.get("delay-before-next");
-
+                                    JSONObject properties = (JSONObject) jsonCurrentAction.get("properties");
+                                    properties = properties != null ? properties : new JSONObject();
+                                    setConfigValues(properties, configMap);
+                                    for (Iterator iterator = properties.keySet().iterator(); iterator.hasNext();) {
+                                        String key = (String) iterator.next();
+                                        properties.put(key, replaceData(jsonData, (String) properties.get(key)));
+                                    }
+                                    properties.put("-outputPath", outputPath);
                                     String className = actionsPackage;
                                     String[] classNameAux = type.split("-");
                                     for (String name : classNameAux)
@@ -309,8 +303,9 @@ public class ActionProcessor {
 
                                     Action action = (Action) cons.newInstance();
                                     action.setType(type);
-                                    action.setValue((String) value);
+                                    action.setValue(value);
                                     action.setDelay(delay_element);
+                                    action.setProperties(properties);
                                     actions.add(action);
                                 }
 
@@ -336,9 +331,15 @@ public class ActionProcessor {
             }
 
             if (result) {
-                System.out.println("\nPages:");
-                for (Page page : pages)
+                System.out.println("Pages:");
+                for (Page page : pages) {
                     System.out.println(page);
+                    for (Element element : page.getElements()) {
+                        System.out.println("    " + element);
+                        for (Action action : element.getActions())
+                            System.out.println("        " + action);
+                    }
+                }
                 System.out.println("");
 
                 System.out.println("start-date: " + startDate);

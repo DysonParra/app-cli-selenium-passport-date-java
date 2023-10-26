@@ -55,8 +55,6 @@ public class PassportProcessor {
             "res\\data.json",
             "-outputPath",
             "res\\output",
-            "-outputFile",
-            "output.log",
             "-chromeProfileDir",
             "Profile 1",
             "--notUseIncognito",};
