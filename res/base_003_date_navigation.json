@@ -5,7 +5,7 @@
         "max-load-page-tries": 15,
         "max-action-page-tries": 30,
         "delay-time-before-retry": 2000,
-        "delay-time-before-end" : 36000000
+        "delay-time-before-end" : 3000
     },
     "pages": [
         {

@@ -1,4 +1,5 @@
 {
+    "OUTPUT_URL_FILE": "payment_url.log",
     "DOCUMENT_TYPE": "CC",
     "DOCUMENT_NUMBER": "1234567890",
     "NAMES": "Pedro Andres",

@@ -1,16 +1,16 @@
 {
     "config": {
-        "start-date" : "07:59:30",
+        "start-date" : "07:59:57",
         "load-page-timeout": 50000,
         "max-load-page-tries": 30,
-        "max-action-page-tries": 36000,
+        "max-action-page-tries": 30,
         "delay-time-before-retry": 2000,
-        "delay-time-before-end" : 36000000
+        "delay-time-before-end" : 3000
     },
     "pages": [
         {
             "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/user/pago/",
-            "url_test": "file:///D:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
+            "url_test": "file:///E:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
             "delay-before-next": 5000,
             "elements": [
                 {
@@ -21,9 +21,9 @@
                     "type": "select",
                     "actions": [
                         {
-                            "type": "button",
+                            "type": "clic",
                             "value": null,
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -37,7 +37,7 @@
                         {
                             "type": "set-text",
                             "value": "<DOCUMENT_NUMBER>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -51,7 +51,7 @@
                         {
                             "type": "set-text",
                             "value": "<DOCUMENT_NUMBER>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -65,7 +65,7 @@
                         {
                             "type": "set-text",
                             "value": "<NAMES>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -79,7 +79,7 @@
                         {
                             "type": "set-text",
                             "value": "<LAST_NAMES>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -93,7 +93,7 @@
                         {
                             "type": "set-text",
                             "value": "<EMAIL>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -107,7 +107,7 @@
                         {
                             "type": "set-text",
                             "value": "<EMAIL>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -121,7 +121,7 @@
                         {
                             "type": "set-text",
                             "value": "<CELL_PHONE>",
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -135,7 +135,7 @@
                         {
                             "type": "clic",
                             "value": null,
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -149,7 +149,7 @@
                         {
                             "type": "check-option",
                             "value": null,
-                            "delay-before-next": 10
+                            "delay-before-next": 100
                         }
                     ]
                 },
@@ -163,7 +163,26 @@
                         {
                             "type": "clic",
                             "value": null,
-                            "delay-before-next": 10
+                            "delay-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "placeholder": null,
+                    "xpath": "//body",
+                    "type": "body",
+                    "actions": [
+                        {
+                            "type": "wait-page-load",
+                            "value": "30000",
+                            "delay-before-next": 100
+                        },
+                        {
+                            "type": "save-current-url",
+                            "value": "<OUTPUT_URL_FILE>",
+                            "delay-before-next": 100
                         }
                     ]
                 }
