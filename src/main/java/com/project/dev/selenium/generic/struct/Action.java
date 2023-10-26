@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Action} se encarga de realizar tareas especificas.
+ * @fileoverview    {Action}
  *
  * @version         2.0
  *
@@ -9,8 +9,8 @@
  * @see             github.com/DysonParra
  *
  * History
- * @version 1.0     Implementación realizada.
- * @version 2.0     Documentación agregada.
+ * @version 1.0     Implementation done.
+ * @version 2.0     Documentation added.
  */
 package com.project.dev.selenium.generic.struct;
 
