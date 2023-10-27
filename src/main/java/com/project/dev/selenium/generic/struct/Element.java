@@ -35,9 +35,7 @@ public class Element {
 
     private String id;
     private String name;
-    private String placeholder;
     private String xpath;
-    private String type;
     @ToString.Exclude
     private List<Action> actions;
 

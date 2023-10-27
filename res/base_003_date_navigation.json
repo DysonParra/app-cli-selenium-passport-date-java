@@ -15,9 +15,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//input[@type='number']",
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -29,9 +27,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//option[normalize-space(text()) ='<REQUEST_TYPE>']",
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -43,9 +39,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//input[@type='text'][@required='required']",
-                    "type": "input",
                     "actions": [
                         {
                             "type": "clic",
@@ -57,9 +51,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//select[@data-handler='selectYear']//option[@value='<PAYMENT_YEAR>']",
-                    "type": "select",
                     "actions": [
                         {
                             "type": "clic",
@@ -71,9 +63,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//select[@data-handler='selectMonth']//option[text()='<PAYMENT_MONTH>']",
-                    "type": "select",
                     "actions": [
                         {
                             "type": "clic",
@@ -85,9 +75,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//a[@href='#'][text()='<PAYMENT_DAY>']",
-                    "type": "a",
                     "actions": [
                         {
                             "type": "clic",
@@ -99,9 +87,7 @@
                 {
                     "id": "acepto",
                     "name": "data[acepto]",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "checkbox",
                     "actions": [
                         {
                             "type": "check-option",
@@ -113,9 +99,7 @@
                 {
                     "id": "consult",
                     "name": "next",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -127,9 +111,7 @@
                 {
                     "id": "paso2",
                     "name": "next",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "fieldset",
                     "actions": [
                         {
                             "type": "clic",
@@ -141,9 +123,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -155,9 +135,7 @@
                 {
                     "id": "new_cita",
                     "name": "next",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -169,9 +147,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//input[@type='submit'][@value='Finalizar']",
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",

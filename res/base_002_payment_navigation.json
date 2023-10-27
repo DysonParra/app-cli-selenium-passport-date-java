@@ -16,9 +16,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
-                    "type": "select",
                     "actions": [
                         {
                             "type": "clic",
@@ -30,9 +28,7 @@
                 {
                     "id": "num_ide",
                     "name": "data[num_ide]",
-                    "placeholder": "1.234.567.890",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -44,9 +40,7 @@
                 {
                     "id": "num_ide_confirm",
                     "name": "data[num_ide_confirm]",
-                    "placeholder": "1.234.567.890",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -58,9 +52,7 @@
                 {
                     "id": "nombre",
                     "name": "data[nombre]",
-                    "placeholder": "Pedro Andres",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -72,9 +64,7 @@
                 {
                     "id": "apellido",
                     "name": "data[apellido]",
-                    "placeholder": "Perez Vargas",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -86,9 +76,7 @@
                 {
                     "id": "email",
                     "name": "data[email]",
-                    "placeholder": "ingrese su correo electrónico",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -100,9 +88,7 @@
                 {
                     "id": "email_confirm",
                     "name": "data[email_confirm]",
-                    "placeholder": "ingrese su correo electrónico",
                     "xpath": null,
-                    "type": "input",
                     "actions": [
                         {
                             "type": "set-text",
@@ -114,9 +100,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": "ingrese su n\u00FAmero celular",
-                    "xpath": null,
-                    "type": "input",
+                    "xpath": "//input[@placeholder='ingrese su n\u00FAmero celular']",
                     "actions": [
                         {
                             "type": "set-text",
@@ -128,9 +112,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//option[normalize-space(text()) ='Pasaporte <PASSPORT_TYPE> ($155.000)']",
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -142,9 +124,7 @@
                 {
                     "id": "acepto",
                     "name": "data[acepto]",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "checkbox",
                     "actions": [
                         {
                             "type": "check-option",
@@ -156,9 +136,7 @@
                 {
                     "id": "form-pago",
                     "name": "submit",
-                    "placeholder": null,
                     "xpath": null,
-                    "type": "button",
                     "actions": [
                         {
                             "type": "clic",
@@ -170,9 +148,7 @@
                 {
                     "id": null,
                     "name": null,
-                    "placeholder": null,
                     "xpath": "//body",
-                    "type": "body",
                     "actions": [
                         {
                             "type": "wait-page-load",

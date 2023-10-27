@@ -124,9 +124,6 @@ public class ActionProcessor {
                         webElm = driver.findElement(By.id(element.getId()));
                     else if (element.getName() != null)
                         webElm = driver.findElement(By.name(element.getName()));
-                    else if (element.getPlaceholder() != null)
-                        webElm = driver.findElement(By.xpath("//" + element.getType()
-                                + "[@placeholder='" + element.getPlaceholder() + "']"));
                     else
                         webElm = driver.findElement(By.xpath(element.getXpath()));
                     action.executeAction(driver, webElm);
@@ -276,9 +273,7 @@ public class ActionProcessor {
                                 Element element = Element.builder()
                                         .id(replaceData(jsonData, (String) jsonCurrentElement.get("id")))
                                         .name(replaceData(jsonData, (String) jsonCurrentElement.get("name")))
-                                        .placeholder(replaceData(jsonData, (String) jsonCurrentElement.get("placeholder")))
                                         .xpath(replaceData(jsonData, (String) jsonCurrentElement.get("xpath")))
-                                        .type(replaceData(jsonData, (String) jsonCurrentElement.get("type")))
                                         .build();
                                 List<Action> actions = new ArrayList<>();
                                 for (Object currentAction : (JSONArray) jsonCurrentElement.get("actions")) {
