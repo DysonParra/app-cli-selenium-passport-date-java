@@ -14,7 +14,7 @@
  */
 package com.project.dev;
 
-import com.project.dev.selenium.generic.PassportProcessor;
+import com.project.dev.selenium.generic.SeleniumProcessor;
 
 /**
  * TODO: Definición de {@code Application}.
@@ -30,7 +30,7 @@ public class Application {
      * @param args argumentos de la linea de comandos.
      */
     public static void main(String[] args) {
-        PassportProcessor.run(args);
+        SeleniumProcessor.run(args);
     }
 
 }

@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.ToString;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,19 +33,23 @@ import org.openqa.selenium.WebElement;
 @AllArgsConstructor
 @Builder
 @Data
+@ToString(callSuper = true)
 public class Script extends Action {
 
+    /**
+     * Ejecuta una acción en el elemento de la página actual.
+     *
+     * @param driver  es el driver del navegador.
+     * @param element es el {@code WebElement} que se le va a ejecutar dicha acción.
+     * @return {@code true} si se ejecuta la acción correctamente.
+     * @throws Exception si ocurre algún error ejecutando la acción indicada.
+     */
     @Override
     public boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element) throws Exception {
         //System.out.println("Script");
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0]." + value, element);
+        js.executeScript(value, element);
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Action{" + "type=" + type + ", value=" + value + ", delay=" + delay + ", properties=" + properties + '}';
     }
 
 }
