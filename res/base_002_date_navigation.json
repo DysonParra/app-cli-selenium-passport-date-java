@@ -10,6 +10,7 @@
     "pages": [
         {
             "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/cita/datos-usuario/",
+            "url_test": "file:///E:/Projects/Developer/java/selenium-passport-date-java/res/test-date.html",
             "delay-before-next": 2000,
             "elements": [
                 {
