@@ -20,7 +20,7 @@ import com.project.dev.selenium.generic.SeleniumProcessor;
  * TODO: Definición de {@code Application}.
  *
  * @author Dyson Parra
- * @since 1.8
+ * @since 11
  */
 public class Application {
 
