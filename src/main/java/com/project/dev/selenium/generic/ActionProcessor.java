@@ -14,6 +14,7 @@
  */
 package com.project.dev.selenium.generic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import com.project.dev.file.generic.FileProcessor;
 import com.project.dev.flag.processor.Flag;
@@ -23,7 +24,6 @@ import com.project.dev.selenium.generic.struct.Config;
 import com.project.dev.selenium.generic.struct.Element;
 import com.project.dev.selenium.generic.struct.Page;
 import java.io.FileReader;
-import java.lang.reflect.Constructor;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +53,8 @@ import org.openqa.selenium.devtools.DevTools;
 public class ActionProcessor {
 
     private static int currentIndex = 0;
-    private static String outputPath;
+    private static Map<String, String> flagsMap;
+    private static Map<String, Config> configMap;
     private static final SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
@@ -122,7 +123,7 @@ public class ActionProcessor {
                         webElm = driver.findElement(By.name(element.getName()));
                     else
                         webElm = driver.findElement(By.xpath(element.getXpath()));
-                    action.executeAction(driver, webElm);
+                    action.executeAction(driver, webElm, flagsMap);
                 } catch (Exception e) {
                     System.out.println("Error executing action in element: " + element);
                     System.out.println("Date:    " + DATETIME_FORMAT.format(new Date()));
@@ -155,18 +156,17 @@ public class ActionProcessor {
      */
     public static boolean processFlags(Flag[] flags) {
         boolean result = true;
-
+        flagsMap = FlagMap.convertFlagsArrayToMap(flags);
         String actionsPackage = "com.project.dev.selenium.generic.struct.action.";
-        Map<String, String> flagsMap = FlagMap.convertFlagsArrayToMap(flags);
         String chromeDriverPath = flagsMap.get("-chromeDriverPath");
         String navigationFilePath = flagsMap.get("-navigationFilePath");
         String dataFilePath = flagsMap.get("-dataFilePath");
-        outputPath = flagsMap.get("-outputPath");
+        String outputPath = flagsMap.get("-outputPath");
         String chromeUserDataDir = System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data";
         String chromeProfileDir = flagsMap.get("-chromeProfileDir");
         chromeUserDataDir = FlagMap.validateFlagInMap(flagsMap, "-chromeUserDataDir", chromeUserDataDir, String.class);
 
-        Map<String, Config> configMap = new HashMap<>();
+        configMap = new HashMap<>();
         configMap.put("start-date", Config.builder().type(String.class).defaultValue(null).build());
         configMap.put("load-page-timeout", Config.builder().type(Long.class).defaultValue(10000l).build());
         configMap.put("max-load-page-tries", Config.builder().type(Long.class).defaultValue(3l).build());
@@ -235,6 +235,7 @@ public class ActionProcessor {
             int delayTimeBeforeRetry = (int) (long) configMap.get("delay-time-before-retry").getCanonicalValue();
             int delayTimeBeforeEnd = (int) (long) configMap.get("delay-time-before-end").getCanonicalValue();
 
+            ObjectMapper mapper = new ObjectMapper();
             List<Page> pages = new ArrayList<>();
             List<String> urlPages = new ArrayList<>();
 
@@ -275,28 +276,19 @@ public class ActionProcessor {
                                 for (Object currentAction : (JSONArray) jsonCurrentElement.get("actions")) {
                                     JSONObject jsonCurrentAction = (JSONObject) currentAction;
                                     String type = replaceData(jsonData, (String) jsonCurrentAction.get("type"));
-                                    String value = replaceData(jsonData, (String) jsonCurrentAction.get("value"));
-                                    long delay_element = (long) jsonCurrentAction.get("delay-before-next");
-                                    JSONObject properties = (JSONObject) jsonCurrentAction.get("properties");
-                                    properties = properties != null ? properties : new JSONObject();
-                                    setConfigValues(properties, configMap);
-                                    for (Iterator iterator = properties.keySet().iterator(); iterator.hasNext();) {
+                                    for (Iterator iterator = jsonCurrentAction.keySet().iterator(); iterator.hasNext();) {
                                         String key = (String) iterator.next();
-                                        properties.put(key, replaceData(jsonData, (String) properties.get(key)));
+                                        Object value = jsonCurrentAction.get(key);
+                                        if (value instanceof String)
+                                            jsonCurrentAction.put(key, replaceData(jsonData, (String) value));
                                     }
-                                    properties.put("-outputPath", outputPath);
                                     String className = actionsPackage;
                                     String[] classNameAux = type.split("-");
                                     for (String name : classNameAux)
                                         className += name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
 
-                                    Constructor cons = Class.forName(className).getConstructors()[0];
-
-                                    Action action = (Action) cons.newInstance();
-                                    action.setType(type);
-                                    action.setValue(value);
-                                    action.setDelay(delay_element);
-                                    action.setProperties(properties);
+                                    Class actionClass = Class.forName(className);
+                                    Action action = (Action) mapper.readValue(currentAction.toString(), actionClass);
                                     actions.add(action);
                                 }
 

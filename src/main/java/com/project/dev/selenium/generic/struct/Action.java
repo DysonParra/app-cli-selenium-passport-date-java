@@ -14,6 +14,8 @@
  */
 package com.project.dev.selenium.generic.struct;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,18 +36,18 @@ import org.openqa.selenium.WebElement;
 public abstract class Action {
 
     protected String type;
-    protected String value;
+    @JsonProperty(value = "delay-before-next")
     protected long delay;
-    protected JSONObject properties;
 
     /**
      * Ejecuta una acción en el elemento de la página actual.
      *
      * @param driver  es el driver del navegador.
      * @param element es el {@code WebElement} que se le va a ejecutar dicha acción.
+     * @param flagsMap contiene las {@code Flag} pasadas por consola.
      * @return {@code true} si se ejecuta la acción correctamente.
      * @throws Exception si ocurre algún error ejecutando la acción indicada.
      */
-    public abstract boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element) throws Exception;
+    public abstract boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element, Map<String, String> flagsMap) throws Exception;
 
 }

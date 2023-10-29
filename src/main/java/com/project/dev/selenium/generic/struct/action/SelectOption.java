@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {SetText}
+ * @fileoverview    {SelectOption}
  *
  * @version         2.0
  *
@@ -25,9 +25,10 @@ import lombok.NonNull;
 import lombok.ToString;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
- * TODO: Definición de {@code SetText}.
+ * TODO: Definición de {@code SelectOption}.
  *
  * @author Dyson Parra
  * @since 1.8
@@ -37,7 +38,7 @@ import org.openqa.selenium.WebElement;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class SetText extends Action {
+public class SelectOption extends Action {
 
     @JsonProperty(value = "value")
     protected String value;
@@ -53,8 +54,9 @@ public class SetText extends Action {
      */
     @Override
     public boolean executeAction(@NonNull WebDriver driver, @NonNull WebElement element, Map<String, String> flagsMap) throws Exception {
-        //System.out.println("SetText");
-        element.sendKeys(value);
+        //System.out.println("SelectOption");
+        Select select = new Select(element);
+        select.selectByIndex((int) (long) (Long.valueOf(String.valueOf(value))));
         return true;
     }
 
