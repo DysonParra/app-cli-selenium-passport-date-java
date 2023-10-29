@@ -17,7 +17,7 @@ package com.project.dev;
 import com.project.dev.selenium.generic.SeleniumProcessor;
 
 /**
- * TODO: Definición de {@code Application}.
+ * TODO: Description of {@code Application}.
  *
  * @author Dyson Parra
  * @since 11
