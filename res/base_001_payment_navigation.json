@@ -20,7 +20,6 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "value": null,
                             "delay-before-next": 100
                         }
                     ]
@@ -32,7 +31,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<DOCUMENT_NUMBER>",
+                            "text": "<DOCUMENT_NUMBER>",
                             "delay-before-next": 100
                         }
                     ]
@@ -44,7 +43,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<DOCUMENT_NUMBER>",
+                            "text": "<DOCUMENT_NUMBER>",
                             "delay-before-next": 100
                         }
                     ]
@@ -56,7 +55,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<NAMES>",
+                            "text": "<NAMES>",
                             "delay-before-next": 100
                         }
                     ]
@@ -68,7 +67,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<LAST_NAMES>",
+                            "text": "<LAST_NAMES>",
                             "delay-before-next": 100
                         }
                     ]
@@ -80,7 +79,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<EMAIL>",
+                            "text": "<EMAIL>",
                             "delay-before-next": 100
                         }
                     ]
@@ -92,7 +91,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<EMAIL>",
+                            "text": "<EMAIL>",
                             "delay-before-next": 100
                         }
                     ]
@@ -104,7 +103,7 @@
                     "actions": [
                         {
                             "type": "set-text",
-                            "value": "<CELL_PHONE>",
+                            "text": "<CELL_PHONE>",
                             "delay-before-next": 100
                         }
                     ]
@@ -116,7 +115,6 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "value": null,
                             "delay-before-next": 100
                         }
                     ]
@@ -127,8 +125,7 @@
                     "xpath": null,
                     "actions": [
                         {
-                            "type": "check-option",
-                            "value": null,
+                            "type": "clic",
                             "delay-before-next": 100
                         }
                     ]
@@ -140,7 +137,6 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "value": null,
                             "delay-before-next": 100
                         }
                     ]
@@ -152,12 +148,12 @@
                     "actions": [
                         {
                             "type": "wait-page-load",
-                            "value": "30000",
+                            "timeout": 30000,
                             "delay-before-next": 100
                         },
                         {
                             "type": "save-current-url",
-                            "value": "<OUTPUT_URL_FILE>",
+                            "output-file-name": "<OUTPUT_URL_FILE>",
                             "delay-before-next": 100
                         }
                     ]
