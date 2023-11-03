@@ -14,7 +14,7 @@
  */
 package com.project.dev;
 
-import com.project.dev.selenium.generic.SeleniumProcessor;
+import com.project.dev.selenium.generic.processor.SeleniumProcessor;
 
 /**
  * TODO: Description of {@code Application}.
