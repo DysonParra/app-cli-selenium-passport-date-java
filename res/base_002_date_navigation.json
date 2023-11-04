@@ -11,7 +11,7 @@
         {
             "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/cita/datos-usuario/",
             "url_test": "file:///E:/Projects/Developer/java/selenium-passport-date-java/res/test-date.html",
-            "delay-before-next": 2000,
+            "delay-time-before-next": 2000,
             "elements": [
                 {
                     "id": null,
@@ -21,7 +21,7 @@
                         {
                             "type": "set-text",
                             "text": "<DOCUMENT_NUMBER>",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -32,7 +32,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -43,7 +43,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -54,7 +54,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -65,7 +65,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -76,7 +76,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 100
+                            "delay-time-before-next": 100
                         }
                     ]
                 },
@@ -87,7 +87,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 1000
+                            "delay-time-before-next": 1000
                         }
                     ]
                 },
@@ -98,7 +98,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 2000
+                            "delay-time-before-next": 2000
                         }
                     ]
                 },
@@ -109,7 +109,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 1000
+                            "delay-time-before-next": 1000
                         }
                     ]
                 },
@@ -120,7 +120,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 200
+                            "delay-time-before-next": 200
                         }
                     ]
                 },
@@ -131,7 +131,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 500
+                            "delay-time-before-next": 500
                         }
                     ]
                 },
@@ -142,7 +142,7 @@
                     "actions": [
                         {
                             "type": "clic",
-                            "delay-before-next": 500
+                            "delay-time-before-next": 500
                         }
                     ]
                 }
