@@ -1,0 +1,164 @@
+{
+    "config": {
+        "start-date" : "07:59:57",
+        "load-page-timeout": 50000,
+        "max-load-page-tries": 30,
+        "max-action-page-tries": 30,
+        "delay-time-before-retry": 2000,
+        "delay-time-before-end" : 3000
+    },
+    "pages": [
+        {
+            "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/user/pago/",
+            "url_test": "file:///E:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
+            "delay-time-before-next": 5000,
+            "elements": [
+                {
+                    "id": null,
+                    "name": null,
+                    "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "num_ide",
+                    "name": "data[num_ide]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<DOCUMENT_NUMBER>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "num_ide_confirm",
+                    "name": "data[num_ide_confirm]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<DOCUMENT_NUMBER>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "nombre",
+                    "name": "data[nombre]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<NAMES>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "apellido",
+                    "name": "data[apellido]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<LAST_NAMES>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "email",
+                    "name": "data[email]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<EMAIL>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "email_confirm",
+                    "name": "data[email_confirm]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<EMAIL>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "xpath": "//input[@placeholder='ingrese su n\u00FAmero celular']",
+                    "actions": [
+                        {
+                            "type": "set-text",
+                            "text": "<CELL_PHONE>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "xpath": "//option[normalize-space(text()) ='Pasaporte <PASSPORT_TYPE> ($155.000)']",
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "acepto",
+                    "name": "data[acepto]",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "form-pago",
+                    "name": "submit",
+                    "xpath": null,
+                    "actions": [
+                        {
+                            "type": "clic",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "id": null,
+                    "name": null,
+                    "xpath": "//body",
+                    "actions": [
+                        {
+                            "type": "wait-page-load",
+                            "timeout": 30000,
+                            "delay-time-before-next": 100
+                        },
+                        {
+                            "type": "save-current-url",
+                            "output-file-name": "<OUTPUT_URL_FILE>",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
