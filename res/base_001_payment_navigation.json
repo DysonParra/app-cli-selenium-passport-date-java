@@ -7,8 +7,9 @@
         "delay-time-before-retry": 2000,
         "delay-time-before-end" : 3000
     },
-    "pages": [
+    "navigation": [
         {
+            "type": "page",
             "url": "https://sedeelectronica.antioquia.gov.co/pasaporte/user/pago/",
             "url_test": "file:///E:/Projects/Developer/java/selenium-passport-date-java/res/test-payment.html",
             "delay-time-before-next": 5000,
