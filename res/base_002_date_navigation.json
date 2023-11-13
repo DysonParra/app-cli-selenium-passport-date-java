@@ -15,6 +15,7 @@
             "delay-time-before-next": 2000,
             "elements": [
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='number']",
@@ -27,6 +28,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//option[normalize-space(text()) ='<REQUEST_TYPE>']",
@@ -38,6 +40,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='text'][@required='required']",
@@ -49,6 +52,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//select[@data-handler='selectYear']//option[@value='<PAYMENT_YEAR>']",
@@ -60,6 +64,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//select[@data-handler='selectMonth']//option[text()='<PAYMENT_MONTH>']",
@@ -71,6 +76,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//a[@href='#'][text()='<PAYMENT_DAY>']",
@@ -82,6 +88,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": "acepto",
                     "name": "data[acepto]",
                     "xpath": null,
@@ -93,6 +100,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": "consult",
                     "name": "next",
                     "xpath": null,
@@ -104,6 +112,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": "paso2",
                     "name": "next",
                     "xpath": null,
@@ -115,6 +124,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
@@ -126,6 +136,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": "new_cita",
                     "name": "next",
                     "xpath": null,
@@ -137,6 +148,7 @@
                     ]
                 },
                 {
+                    "type": "dom-element",
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='submit'][@value='Finalizar']",
