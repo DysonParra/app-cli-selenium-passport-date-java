@@ -1,5 +1,6 @@
 {
     "config": {
+        "only-validate-config-files": false,
         "start-date" : "07:59:57",
         "load-page-timeout": 50000,
         "max-load-page-tries": 30,
@@ -166,6 +167,7 @@
                         },
                         {
                             "type": "save-current-url",
+                            "output-path": "<OUTPUT_PATH>",
                             "output-file-name": "<OUTPUT_URL_FILE>",
                             "delay-time-before-next": 100
                         }
