@@ -4,5 +4,5 @@
     "chromeDriverPath": "res\\chromedriver.exe",
     "chromeUserDataDir": "C:\\Users\\Developer\\AppData\\Local\\Google\\Chrome\\User Data Selenium",
     "chromeProfileDir": "Profile 1",
-    "incognito": true
+    "incognito": false
 }
