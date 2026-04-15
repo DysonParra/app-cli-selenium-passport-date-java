@@ -17,6 +17,7 @@
             "elements": [
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//select[@id='tipo_ide']//Option[@value='<DOCUMENT_TYPE>']",
@@ -29,6 +30,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "num_ide",
                     "name": "data[num_ide]",
                     "xpath": null,
@@ -42,6 +44,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "num_ide_confirm",
                     "name": "data[num_ide_confirm]",
                     "xpath": null,
@@ -55,6 +58,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "nombre",
                     "name": "data[nombre]",
                     "xpath": null,
@@ -68,6 +72,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "apellido",
                     "name": "data[apellido]",
                     "xpath": null,
@@ -81,6 +86,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "email",
                     "name": "data[email]",
                     "xpath": null,
@@ -94,6 +100,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "email_confirm",
                     "name": "data[email_confirm]",
                     "xpath": null,
@@ -107,6 +114,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//input[@placeholder='ingrese su n\u00FAmero celular']",
@@ -120,6 +128,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//option[normalize-space(text()) ='Pasaporte <PASSPORT_TYPE> ($155.000)']",
@@ -132,6 +141,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "acepto",
                     "name": "data[acepto]",
                     "xpath": null,
@@ -144,6 +154,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "form-pago",
                     "name": "submit",
                     "xpath": null,
@@ -156,6 +167,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//body",

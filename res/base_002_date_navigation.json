@@ -17,6 +17,7 @@
             "elements": [
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='number']",
@@ -30,6 +31,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//option[normalize-space(text()) ='<REQUEST_TYPE>']",
@@ -42,6 +44,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='text'][@required='required']",
@@ -54,6 +57,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//select[@data-handler='selectYear']//option[@value='<PAYMENT_YEAR>']",
@@ -66,6 +70,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//select[@data-handler='selectMonth']//option[text()='<PAYMENT_MONTH>']",
@@ -78,6 +83,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//a[@href='#'][text()='<PAYMENT_DAY>']",
@@ -90,6 +96,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "acepto",
                     "name": "data[acepto]",
                     "xpath": null,
@@ -102,6 +109,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "consult",
                     "name": "next",
                     "xpath": null,
@@ -114,6 +122,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "paso2",
                     "name": "next",
                     "xpath": null,
@@ -126,6 +135,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//div[@class='radio']//label[contains(text(),'<DATE_HOUR>')]//input",
@@ -138,6 +148,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": "new_cita",
                     "name": "next",
                     "xpath": null,
@@ -150,6 +161,7 @@
                 },
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//input[@type='submit'][@value='Finalizar']",
